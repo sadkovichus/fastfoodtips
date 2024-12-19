@@ -1,0 +1,45 @@
+html[data-theme='dark'] {
+  /*? Цвета фона ?*/
+  --background-color: #2b2738;
+  /* Основной фон страницы */
+  --block-background-color: #122023;
+  /* Фон блоков */
+
+  /*? Цвета текста ?*/
+  --text-color: #fefefe;
+  /* Основной цвет текста */
+  --secondary-text-color: #9795a1;
+  /* Вторичный цвет текста */
+
+  /*? Цвета кнопок ?*/
+  --button-background-color: #6e54b5;
+  --button-background-color-hover: #8164d2;
+  /* Фон кнопок */
+  --button-text-color: #ffffff;
+  /* Цвет текста на кнопках */
+
+  /*? Цвета обводки ?*/
+  --border-color: #333;
+  /* Цвет обводки элементов */
+
+  /*? Эффект наведения на кнопки ?*/
+  --button-hover-background-color: #3b49df66;
+  /* Фон кнопок при наведении */
+  --button-hover-text-color: #ffffff;
+  
+  --button-secondary-color: #ffffff31;
+  /* Цвет текста на кнопках при наведении */
+
+  /*? Дополнительные цвета ?*/
+  --link-color: #b4a0e8;
+  /* Цвет ссылок */
+  --link-hover-color: #e91e63;
+  /* Цвет ссылок при наведении */
+
+  --blue-color: #1f2966;
+  --blue-color-opacity: rgba(59, 73, 223, 0.4);
+
+  /* Цвет инпута */
+  --input-background-color: #3b364c;
+  --input-border-color: #9280bd;
+}

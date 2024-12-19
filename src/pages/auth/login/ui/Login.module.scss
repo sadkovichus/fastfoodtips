@@ -1,0 +1,13 @@
+.login {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.top {
+	margin-bottom: 40px;
+
+	.title {
+		margin-bottom: 10px;
+	}
+}

@@ -1,0 +1,14 @@
+.auth {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	max-width: 450px;
+	width: 100%;
+	gap: 5px;
+}

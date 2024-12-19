@@ -72,7 +72,7 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      "/api": 'https://47b4-2a02-8071-6282-a220-80dd-da05-b18b-ba12.ngrok-free.app/',
+      "/api": 'https://0267-2a02-8071-6282-a220-66a2-8fa2-c24e-5cd.ngrok-free.app/',
       // "/api": {
       //   target: "https://47b4-2a02-8071-6282-a220-80dd-da05-b18b-ba12.ngrok-free.app",
       //   changeOrigin: true,

@@ -1,0 +1,28 @@
+html[data-theme='light'] {
+	--background-color: #ebebeb;
+	--block-background-color: #99b1b7;
+
+	--text-color: #3f4657;
+	--secondary-text-color: #bebebe;
+
+	--input-bg-color: #e4deda;
+
+	--button-background-color: transparent;
+	--button-text-color: #ffffff;
+
+	--border-color: #7a7a7a;
+
+	--button-hover-background-color: #3b49df66;
+	--button-hover-text-color: #ffffff;
+	--button-secondary-color: #4a494945;
+
+	--link-color: #3b49df;
+	--link-hover-color: #e91e63;
+
+	--blue-color: #1f2966;
+	--blue-color-opacity: rgba(59, 73, 223, 0.4);
+
+	/* Цвет инпута */
+	--input-background-color: #3b364c;
+	--input-border-color: #9280bd;
+}

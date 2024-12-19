@@ -1,0 +1,54 @@
+@import url('./fonts.scss');
+@import url('./variables/variables.scss');
+
+//? Theme
+@import url('./variables/dark.scss');
+@import url('./variables/light.scss');
+
+//? Reset styles
+@import url('./reset-styles/normolize.scss');
+@import url('./reset-styles/reset.scss');
+
+html {
+  background-color: var(--background-color);
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  flex: 1;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: var(--background-color);
+
+  color: var(--text-color);
+  font-family: var(--base-font);
+
+}
+
+a {
+  color: var(--link-color);
+}
+
+img {
+  user-select: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  /* Для Firefox */
+  appearance: textfield;
+  /* Для современных браузеров */
+}

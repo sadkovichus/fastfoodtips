@@ -9,7 +9,7 @@ import sitemap from "vite-plugin-sitemap"
 export default defineConfig({
   plugins: [
     react(),
-    sitemap({ hostname: "https://www.FastFoodTips.com" }),
+    sitemap({ hostname: "https://fastfoodtips.vercel.app/" }),
     compression({ algorithm: "gzip" }) as PluginOption,
     legacy({ targets: ["defaults", "not IE 11"] }),
     VitePWA({
@@ -35,7 +35,7 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: /^https:\/\/api\.FastFoodTips\.com\/.*$/,
+            urlPattern: /^https:\/\/fastfoodtips\.vercel\.app\/.*$/,
             handler: "NetworkFirst",
             options: {
               cacheName: "api-cache",
@@ -72,14 +72,14 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      "/api": 'https://0267-2a02-8071-6282-a220-66a2-8fa2-c24e-5cd.ngrok-free.app/',
-      // "/api": {
-      //   target: "https://47b4-2a02-8071-6282-a220-80dd-da05-b18b-ba12.ngrok-free.app",
-      //   changeOrigin: true,
-      //   secure: true,
-      //   cookieDomainRewrite: "localhost",
-      //   rewrite: path => path.replace(/^\/api/, ""),
-      // },
+      // "/api": 'https://0267-2a02-8071-6282-a220-66a2-8fa2-c24e-5cd.ngrok-free.app/',
+      "/api": {
+        target: "https://0267-2a02-8071-6282-a220-66a2-8fa2-c24e-5cd.ngrok-free.app/",
+        changeOrigin: true,
+        secure: true,
+        cookieDomainRewrite: "localhost",
+        rewrite: path => path.replace(/^\/api/, ""),
+      },
       // "/ws": {
       //   target: "wss://api.codersbud.com",
       //   ws: true,

@@ -1,6 +1,7 @@
 export type UserType = {
 	id?: bigint,
-	phone: string
+	email: string
 	password: string
 	balance?: string | number
+	token: string;
 }

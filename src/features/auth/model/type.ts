@@ -1,5 +1,5 @@
 export type AuthFormInputs = {
-	phone: string
+	email: string
 	password: string
 	conditions?: boolean
 }

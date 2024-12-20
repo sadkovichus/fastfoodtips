@@ -5,7 +5,8 @@ const initialState: UserType = {
 	id: undefined,
 	password: '',
 	balance: 0,
-	phone: '',
+	email: '',
+	token: '',
 }
 
 const authSlice = createSlice({
@@ -13,16 +14,20 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		setUser: (state, action: PayloadAction<UserType>) => {
+			localStorage.setItem('user', JSON.stringify(action.payload))
+
 			state.id = action.payload.id
 			state.password = action.payload.password
 			state.balance = action.payload.balance
-			state.phone = action.payload.phone
+			state.email = action.payload.email
+			state.token = action.payload.token
 		},
 		logout: (state) => {
 			state.id = undefined
 			state.password = ''
 			state.balance = 0
-			state.phone = ''
+			state.email = ''
+			state.token = ''
 		},
 	},
 })

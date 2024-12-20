@@ -1,2 +1,2 @@
-import { CreateForm } from './ui/CreateForm'
+import { CreateForm } from './ui'
 export { CreateForm }

@@ -72,21 +72,12 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      // "/api": 'https://0267-2a02-8071-6282-a220-66a2-8fa2-c24e-5cd.ngrok-free.app/',
-      "/api": {
-        target: "https://0267-2a02-8071-6282-a220-66a2-8fa2-c24e-5cd.ngrok-free.app/",
-        changeOrigin: true,
-        secure: true,
-        cookieDomainRewrite: "localhost",
-        rewrite: path => path.replace(/^\/api/, ""),
-      },
-      // "/ws": {
-      //   target: "wss://api.codersbud.com",
-      //   ws: true,
-      //   rewrite: path => path.replace(/^\/ws/, "/chat"),
+      "/api": 'https://0f7f-2a02-8071-6282-a220-5331-22fc-8ad-ee0.ngrok-free.app/',
+      // '/api': {
+      //   target: 'https://1199-2a02-8071-6282-a220-c1c1-9b95-44c6-e8a3.ngrok-free.app',
       //   changeOrigin: true,
-      //   rewriteWsOrigin: true,
-      //   secure: true,
+      //   secure: false,
+      //   rewrite: (path) => path.replace(/^\/api/, '/api'),
       // },
     },
     hmr: { overlay: true },

@@ -21,6 +21,10 @@ body {
   flex: 1;
 }
 
+button {
+  cursor: pointer;
+}
+
 #root {
   display: flex;
   flex-direction: column;

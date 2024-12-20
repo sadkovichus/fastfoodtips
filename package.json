@@ -13,12 +13,16 @@
     "preview": "vite preview",
     "prepare": "husky install"
   },
+  "proxy": "https://0267-2a02-8071-6282-a220-66a2-8fa2-c24e-5cd.ngrok-free.app",
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
+    "@tanstack/react-query": "^5.62.8",
     "axios": "^1.7.9",
     "helmet": "^8.0.0",
+    "http-proxy-middleware": "^3.0.3",
     "path": "^0.12.7",
     "react": "^18.3.1",
+    "react-cookie": "^7.2.2",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
     "react-hook-form": "^7.54.1",

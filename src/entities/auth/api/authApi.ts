@@ -4,25 +4,46 @@ import { UserType } from '@shared/types'
 export const authApi = createApi({
 	reducerPath: 'authApi',
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'https://0267-2a02-8071-6282-a220-66a2-8fa2-c24e-5cd.ngrok-free.app/api',
+		baseUrl: '/api/',
 		credentials: 'include',
+		prepareHeaders: (headers) => {
+			headers.set('Content-Type', 'application/json')
+			return headers
+		},
 	}),
 	endpoints: (builder) => ({
-		login: builder.mutation<UserType, { password: string; phone: string }>({
+		login: builder.mutation<UserType, { password: string; email: string }>({
 			query: (data) => ({
-				url: '/login',
+				url: '/auth/login',
 				method: 'POST',
 				body: data,
 			}),
 		}),
-		createUser: builder.mutation<UserType, { phone: string; password: string; }>({
+		token: builder.mutation<UserType, { token: string }>({
 			query: (data) => ({
-				url: '/register',
+				url: '/token/auth-token',
 				method: 'POST',
-				body: data,
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${data.token}`,
+				},
 			}),
 		}),
+		createUser: builder.mutation<UserType, { email: string; password: string; }>({
+			query: (data) => ({
+				url: '/auth/register',
+				method: 'POST',
+				body: JSON.stringify(data),
+			}),
+		}),
+		verifyCode: builder.mutation<UserType, { code: string }>({
+			query: (data) => ({
+				url: '/verify/verify-code',
+				method: 'POST',
+				body: JSON.stringify(data),
+			})
+		})
 	}),
 })
 
-export const { useLoginMutation, useCreateUserMutation } = authApi
+export const { useLoginMutation, useCreateUserMutation, useVerifyCodeMutation, useTokenMutation } = authApi

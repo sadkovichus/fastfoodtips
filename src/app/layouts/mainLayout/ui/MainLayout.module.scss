@@ -1,0 +1,57 @@
+.main {
+	display: flex;
+	flex: 1;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+.nav {
+	background-color: #3b364c;
+	max-width: 200px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	li {
+		width: 100%;
+
+		a {
+			width: 100%;
+			padding: 10px;
+			display: flex;
+			justify-content: left;
+
+			font-size: 14px;
+
+			&:hover {
+				background-color: #48425d;
+			}
+		}
+	}
+}
+
+.btn {
+	background-color: transparent;
+	border: none;
+	margin-top: auto;
+	padding: 10px;
+
+	color: var(--link-color);
+	font-family: Inter;
+
+	&:hover {
+		background-color: #48425d;
+	}
+}

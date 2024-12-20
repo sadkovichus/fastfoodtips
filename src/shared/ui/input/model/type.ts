@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from 'react'
 
 export type Props = InputHTMLAttributes<HTMLInputElement> & {
-	type?: 'text' | 'password' | 'number'
+	type?: 'text' | 'password' | 'email' | 'number'
 	maxLength?: number
 	title?: string
 	error?: string

@@ -1,16 +1,12 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import s from './Verify.module.scss';
 import { PathNames } from '@shared/config';
 import { VerifyForm } from '@features/';
-import { useEffect } from 'react';
 
 export const Verify = () => {
   const location = useLocation();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!location.state) navigate(PathNames.create, { replace: true });
-  }, [location]);
+  if (!location.state) return <Navigate to={PathNames.create} replace/>
 
   return (
     <div className={s.login}>

@@ -5,7 +5,8 @@ export const PathNames = {
 	verify: '/auth/verify',
 	pay: '/pay',
 	settings: '/settings',
-	myLink: '/my-link'
+	changePassword: '/settings/change-password',
+	myLink: '/my-link',
 } as const
 
 export type PathNamesKeys = keyof typeof PathNames

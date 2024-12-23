@@ -8,7 +8,6 @@ export const useTokenVerification = () => {
 	const dispatch = useAppDispatch()
 
 	const verifyToken = useCallback(async (currentToken: string) => {
-		console.log(currentToken);
 		try {
 			const response = await token({ token: currentToken }).unwrap()
 			console.log(response);

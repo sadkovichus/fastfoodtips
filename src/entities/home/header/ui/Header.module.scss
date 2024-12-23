@@ -13,11 +13,24 @@
 	}
 }
 
+.exit {
+	background-color: transparent;
+	border: none;
+
+	color: var(--text-color);
+	font-size: 17px;
+
+	@media (min-width: 620px) {
+		display: none;
+	}
+}
+
 .container {
 	max-width: 800px;
 	width: 100%;
 	margin: 0 auto;
 	display: flex;
 	gap: 15px;
+	align-items: center;
 	padding: 10px;
 }

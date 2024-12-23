@@ -21,10 +21,10 @@ export const getHelmetConfig = (
 ) => {
 	const defaultConfig: PageHelmetConfig = {
 		path: "/",
-		title: "UsefulPeople - Social Network for Programmers",
+		title: "FastFoodTips",
 		description:
-			"Join Codersbud to connect, collaborate, and share with other programmers.",
-		ogTitle: "Codersbud",
+			"Join FastFoodTips to connect, collaborate, and share with other programmers.",
+		ogTitle: "FastFoodTips",
 		ogDescription: "The best social network for programmers.",
 		ogImage: DEFAULT_IMAGE,
 		ogUrl: WEBSITE_URL,

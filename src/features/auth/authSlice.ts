@@ -1,3 +1,4 @@
+import CryptoJS from 'crypto-js'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { UserType } from '@shared/types'
 
@@ -14,7 +15,7 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		setUser: (state, action: PayloadAction<UserType>) => {
-			localStorage.setItem('user', JSON.stringify(action.payload))
+			localStorage.setItem('user', CryptoJS.AES.encrypt(JSON.stringify(action.payload), import.meta.env.VITE_USER_SECRET).toString())
 
 			state.id = action.payload.id
 			state.password = action.payload.password
@@ -23,6 +24,7 @@ const authSlice = createSlice({
 			state.token = action.payload.token
 		},
 		logout: (state) => {
+			localStorage.removeItem('user')
 			state.id = undefined
 			state.password = ''
 			state.balance = 0

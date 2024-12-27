@@ -1,0 +1,23 @@
+.pay {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.form {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.title {
+		margin-bottom: 20px;
+
+		color: var(--text-color);
+		font-size: 30px;
+
+		@media (max-width: 360px) {
+			font-size: 15px;
+		}
+	}
+}

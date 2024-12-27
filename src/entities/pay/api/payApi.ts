@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { UserType } from '@shared/types'
 
 export const payApi = createApi({
 	reducerPath: 'payApi',
@@ -12,7 +11,7 @@ export const payApi = createApi({
 		},
 	}),
 	endpoints: (builder) => ({
-		createPay: builder.mutation<UserType, { amount: string; email: string }>({
+		createPay: builder.mutation<{ confirmationUrl: string }, { amount: string; userId: string }>({
 			query: (data) => ({
 				url: '/payments/create-payment',
 				method: 'POST',
@@ -22,4 +21,4 @@ export const payApi = createApi({
 	}),
 })
 
-export const { useCreatePayMutation} = payApi
+export const { useCreatePayMutation } = payApi

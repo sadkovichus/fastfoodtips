@@ -3,11 +3,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { UserType } from '@shared/types'
 
 const initialState: UserType = {
-	id: undefined,
+	id: '',
 	password: '',
 	balance: 0,
 	email: '',
 	token: '',
+	firstname: '',
+	lastname: '',
+	fathername: '',
+	avatarUrl: '',
 }
 
 const authSlice = createSlice({
@@ -15,6 +19,7 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		setUser: (state, action: PayloadAction<UserType>) => {
+			console.log(action.payload);
 			localStorage.setItem('user', CryptoJS.AES.encrypt(JSON.stringify(action.payload), import.meta.env.VITE_USER_SECRET).toString())
 
 			state.id = action.payload.id
@@ -22,14 +27,22 @@ const authSlice = createSlice({
 			state.balance = action.payload.balance
 			state.email = action.payload.email
 			state.token = action.payload.token
+			state.firstname = action.payload.firstname
+			state.lastname = action.payload.lastname
+			state.fathername = action.payload.fathername
+			state.avatarUrl = action.payload.avatarUrl
 		},
 		logout: (state) => {
 			localStorage.removeItem('user')
-			state.id = undefined
+			state.id = ''
 			state.password = ''
 			state.balance = 0
 			state.email = ''
 			state.token = ''
+			state.firstname = ''
+			state.lastname = ''
+			state.fathername = ''
+			state.avatarUrl = ''
 		},
 	},
 })

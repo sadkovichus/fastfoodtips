@@ -5,6 +5,7 @@ import { VerifyForm } from '@features/';
 
 export const Verify = () => {
   const location = useLocation();
+  console.log(location);
 
   if (!location.state) return <Navigate to={PathNames.create} replace/>
 

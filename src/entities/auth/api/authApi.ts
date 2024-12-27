@@ -36,13 +36,13 @@ export const authApi = createApi({
 				body: JSON.stringify(data),
 			}),
 		}),
-		verifyCode: builder.mutation<UserType, { code: string }>({
+		verifyCode: builder.mutation<{message: string} | {auth: boolean}, { code: string }>({
 			query: (data) => ({
 				url: '/verify/verify-code',
 				method: 'POST',
 				body: JSON.stringify(data),
 			})
-		})
+		}),
 	}),
 })
 

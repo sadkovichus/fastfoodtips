@@ -10,7 +10,6 @@ export const useTokenVerification = () => {
 	const verifyToken = useCallback(async (currentToken: string) => {
 		try {
 			const response = await token({ token: currentToken }).unwrap()
-			console.log(response);
 			dispatch(setUser(response))
 		} catch (error) {
 			console.error('Token verification failed:', error)

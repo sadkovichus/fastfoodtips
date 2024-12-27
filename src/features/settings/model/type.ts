@@ -1,10 +1,10 @@
 export type SettingsFormInputs = {
-	email: string
-	name: string
-	lastName: string
+	fathername: string
+	lastname: string
+	firstname: string
 }
 
 export type ChangePasswordFormInputs = {
-	password: string;
-	prevPassword: string;
+	oldPassword: string
+	newPassword: string
 }

@@ -7,6 +7,7 @@ import { Verify } from '@pages/auth/verify/ui/Verify';
 import { Home } from '@pages/home';
 import { MyLink } from '@pages/may-link';
 import { Pay } from '@pages/pay';
+import { PayCode } from '@pages/pay-code'
 import { Settings } from '@pages/settings';
 import { PathNames } from '@shared/config';
 import { RouteObject } from 'react-router-dom';
@@ -44,8 +45,12 @@ export const router: RouteObject[] = [
         ],
       },
       {
+        path: PathNames.pay,
+        element: <Pay />
+      },
+      {
         path: PathNames.pay + '/:id',
-        element: <Pay />,
+        element: <PayCode />,
       },
       {
         path: PathNames.auth,

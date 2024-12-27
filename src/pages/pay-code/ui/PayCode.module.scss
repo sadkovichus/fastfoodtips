@@ -1,0 +1,18 @@
+.pay {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.container {
+	max-width: 400px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}

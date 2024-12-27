@@ -4,7 +4,7 @@ import s from './AuthForm.module.scss';
 import { AuthFormInputs } from '@features/auth/model/type';
 import { Link } from 'react-router-dom';
 import { emailValidation, passwordValidation } from '@shared/const';
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 
 interface AuthFormProps {
   onSubmit: SubmitHandler<AuthFormInputs>;
@@ -30,6 +30,10 @@ export const AuthForm = ({ onSubmit, isLoading, message, mode, btnText }: AuthFo
     },
     [clearErrors, setValue]
   );
+
+  useEffect(() => {
+    console.log(message);
+  }, [message])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={s.form}>

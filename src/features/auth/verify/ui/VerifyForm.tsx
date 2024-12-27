@@ -25,7 +25,7 @@ export const VerifyForm = ({email, password}: Props) => {
   const onSubmit: SubmitHandler<{ code: string }> = async data => {
     try {
       const response = await verifyCode(data).unwrap();
-      if ('message' in response) return setUserMessage((response as { message: string }).message);
+      if ('message' in response) return setUserMessage(response.message);
       const responseLogin = await login({ email, password }).unwrap();
       dispatch(setUser(responseLogin));
       navigate(PathNames.root, { replace: true });

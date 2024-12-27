@@ -5,11 +5,17 @@ import { ForwardedRef, forwardRef, useState } from 'react';
 
 export const Input = forwardRef<HTMLInputElement, Props>(
   ({ title, error, onChange, className, prevLetter, maxLength, type = 'text', ...props }: Props, ref?: ForwardedRef<HTMLInputElement>) => {
-    const [value, setVlaue] = useState('');
+    const [value, setValue] = useState('');
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (maxLength && e.target.value.length > maxLength) setVlaue(value);
-      else setVlaue(e.target.value);
+      const newValue = e.target.value;
+
+      // Проверка длины
+      if (maxLength && newValue.length > maxLength) {
+        return; // Прерываем обработку, если длина превышает maxLength
+      }
+
+      setValue(newValue);
 
       if (onChange) {
         onChange(e);

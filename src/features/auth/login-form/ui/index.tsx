@@ -24,7 +24,8 @@ export const LoginForm = () => {
       dispatch(setUser(response));
       navigate(PathNames.root, { replace: true });
     } catch (err) {
-      handleAxiosError(err);
+      setUserMessage((err as { data: { message: string } }).data.message);
+      console.log(handleAxiosError(err));
     }
   };
 

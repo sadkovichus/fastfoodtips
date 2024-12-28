@@ -5,6 +5,7 @@ import { useUploadAvatarMutation } from '@entities/settings/api/settingApi'
 import { useAppDispatch } from '@shared/hooks/useAppDispatch'
 import { setUser } from '@features/auth/authSlice'
 import { useEffect } from 'react'
+
 export const UserProfileInfo = () => {
   const user = useAppSelector(state => state.authReducer);
   const [uploadAvatar, {isLoading}] = useUploadAvatarMutation();

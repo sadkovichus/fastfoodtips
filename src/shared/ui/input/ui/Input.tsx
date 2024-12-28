@@ -5,20 +5,21 @@ import { ForwardedRef, forwardRef, useState } from 'react';
 
 export const Input = forwardRef<HTMLInputElement, Props>(
   ({ title, error, onChange, className, prevLetter, maxLength, type = 'text', ...props }: Props, ref?: ForwardedRef<HTMLInputElement>) => {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(props.value || '');
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
 
       // Проверка длины
       if (maxLength && newValue.length > maxLength) {
-        return; // Прерываем обработку, если длина превышает maxLength
+        console.log(maxLength, newValue.length);
+        return setValue(prev => prev);
       }
 
       setValue(newValue);
 
       if (onChange) {
-        onChange(e);
+        onChange(e); // Вызов onChange из react-hook-form
       }
     };
 
@@ -30,10 +31,10 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           <input
             ref={ref}
             className={classNames(s.input, className, { [s['input-letter']]: !!prevLetter })}
-            value={value}
             type={type}
+            value={value}
             onChange={handleInput}
-            {...props}
+            {...props} // Управление значением полностью передается из props
           />
         </div>
         {error && <p className={s.error}>{error}</p>}

@@ -20,7 +20,7 @@ export const CreateForm = () => {
       if ('email' in response) return navigate(PathNames.verify, { state: { email: response.email, password: response.password }, replace: true });
       setUserMessage((response as { message: string }).message);
     } catch (err) {
-      console.log(err);
+      setUserMessage((err as { data: { message: string } }).data.message);
       console.log(handleAxiosError(err));
     }
   };

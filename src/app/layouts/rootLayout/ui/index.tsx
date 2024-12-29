@@ -1,21 +1,29 @@
 import { Helmet } from 'react-helmet-async';
 import { Outlet, useLocation } from 'react-router-dom';
-import { getHelmetConfig } from '../model/helmet-config';
+import { generateMetaTags } from '../model/page-helmet-data'
 
 export const RootLayout = () => {
   const location = useLocation();
-  const locationPath = location.pathname === '/auth' ? location.pathname + location.search : location.pathname;
-  const helmetConfig = getHelmetConfig(locationPath, 'en');
+    const metaTags = generateMetaTags(location.pathname);
 
   return (
     <>
       <Helmet>
-        <title>{helmetConfig.title}</title>
-        <meta content={helmetConfig.description} name='description' />
-        <meta content={helmetConfig.ogTitle} property='og:title' />
-        <meta content={helmetConfig.ogDescription} property='og:description' />
-        <meta content={helmetConfig.ogImage} property='og:image' />
-        <meta content={helmetConfig.ogUrl} property='og:url' />
+        <title>{metaTags.title}</title>
+        <meta charSet={metaTags.meta.charset} />
+        <meta name='viewport' content={metaTags.meta.viewport} />
+        <meta name='description' content={metaTags.meta.description} />
+        <meta property='og:title' content={metaTags.meta['og:title']} />
+        <meta property='og:description' content={metaTags.meta['og:description']} />
+        <meta property='og:url' content={metaTags.meta['og:url']} />
+        <meta property='og:image' content={metaTags.meta['og:image']} />
+        <meta property='og:type' content={metaTags.meta['og:type']} />
+        <meta name='twitter:card' content={metaTags.meta['twitter:card']} />
+        <meta name='twitter:title' content={metaTags.meta['twitter:title']} />
+        <meta name='twitter:description' content={metaTags.meta['twitter:description']} />
+        <meta name='twitter:image' content={metaTags.meta['twitter:image']} />
+        <link rel='icon' href={metaTags.link[0].href} />
+        <script type='application/ld+json'>{metaTags.script[0].innerHTML}</script>
       </Helmet>
       <Outlet />
     </>

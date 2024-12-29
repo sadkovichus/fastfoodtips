@@ -1,11 +1,11 @@
 export const PathNames = {
-	root: '/',
-	auth: '/auth',
-	create: '/auth/create',
-	verify: '/auth/verify',
+	root: '/', //?
+	auth: '/auth', //?
+	create: '/auth/create', //?
+	verify: '/auth/verify', //?
 	pay: '/pay',
-	settings: '/settings',
-	changePassword: '/settings/change-password',
+	settings: '/settings', //?
+	changePassword: '/settings/change-password', //?
 	myLink: '/my-link',
 } as const
 

@@ -1,10 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import { Outlet, useLocation } from 'react-router-dom';
-import { generateMetaTags } from '../model/page-helmet-data'
+import { generateMetaTags } from '../model/page-helmet-data';
 
 export const RootLayout = () => {
   const location = useLocation();
-    const metaTags = generateMetaTags(location.pathname);
+  const pathanme = location.pathname[location.pathname.length - 1] === '/' ? location.pathname.slice(0, -1) : location.pathname 
+  const metaTags = generateMetaTags(pathanme || '/');
 
   return (
     <>

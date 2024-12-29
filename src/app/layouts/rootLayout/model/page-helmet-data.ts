@@ -20,79 +20,99 @@ const pageHelmetData: Record<LangType, PageHelmetDataType[]> = {
 	en: [
 		{
 			path: "/",
-			title: "FastFoodTips - Home Page | Marketplace for Online Goods",
+			title: "Главная",
 			description:
 				"Welcome to FastFoodTips, the perfect platform created for you to make money from your work. Create, sell, develop, and we will help you with this! We always welcome new people, with love FastFoodTips!",
-			ogTitle: "FastFoodTips - Home Page | Connect, Learn, Collaborate",
+			ogTitle: "Главная",
 			ogDescription: "Explore FastFoodTips, a platform where people from all over the world post their creations.Explore them, participate in competitions and be active. Join us today!",
 			ogImage: "favicon.ico",
 			ogUrl: ` ${WEBSITE_URL} /`,
 		},
 		{
 			path: "/my-link",
-			title: "FastFoodTips - Link Page | Marketplace for Online Goods",
+			title: "Ваша ссылка",
 			description:
 				"Welcome to FastFoodTips, the perfect platform created for you to make money from your work. Create, sell, develop, and we will help you with this! We always welcome new people, with love FastFoodTips!",
-			ogTitle: "FastFoodTips - Home Page | Connect, Learn, Collaborate",
+			ogTitle: "Ваша ссылка на перевод",
 			ogDescription: "Explore FastFoodTips, a platform where people from all over the world post their creations.Explore them, participate in competitions and be active. Join us today!",
 			ogImage: "favicon.ico",
 			ogUrl: `${WEBSITE_URL}/my-link`,
 		},
 		{
 			path: "/auth",
-			title: "FastFoodTips - Sign In | Access Your Account",
+			title: "Вход в аккаунт",
 			description: "Login to your FastFoodTips account to access your personalized profile, connect with others, and take advantage of exclusive features.",
-			ogTitle: "FastFoodTips - Sign In | Join the Marketplace",
+			ogTitle: "Вход в ваш аккаунт",
 			ogDescription:
 				"Log in to your FastFoodTips account to stay connected with the global community of programmers, manage your projects, and engage in meaningful technical discussions.",
 			ogUrl: `${WEBSITE_URL}/auth`,
 		},
 		{
 			path: "/auth/create",
-			title: "FastFoodTips - Sign Up | Create Your Account",
+			title: "Создание аккаунта",
 			description:
 				"Sign up for FastFoodTips to become a part of a dynamic network of developers. Personalize your profile, access tutorials, and engage with experts in coding and programming.",
-			ogTitle: "FastFoodTips - Sign Up | Join the Community of Programmers",
+			ogTitle: "Создание аккаунта",
 			ogDescription:
 				"Register now and start your journey on FastFoodTips, a platform designed for developers to connect, learn, and grow. Unlock exclusive content and tools for your programming career.",
 			ogUrl: `${WEBSITE_URL} /auth/create`,
 		},
 		{
 			path: "/auth/verify",
-			title: "FastFoodTips - Verification | Confirm Your Email",
+			title: "Верификация аккаунта",
 			description:
 				"Complete the verification process by confirming your email address. This step ensures the security of your account and allows you to activate your full FastFoodTips membership.",
-			ogTitle: "FastFoodTips - Verification | Activate Your Account",
+			ogTitle: "Верификация аккаунта",
 			ogDescription:
 				"Verify your email to finish setting up your FastFoodTips account. Ensure your information is accurate and secure to start connecting with other developers on the platform.",
 			ogUrl: `${WEBSITE_URL} / auth / verify`,
 		},
 		{
 			path: "/settings",
-			title: "FastFoodTips - Settings | Customize Your Experience",
+			title: "Настройки профиля",
 			description:
 				"Manage your account settings, privacy preferences, and notification options. Tailor your FastFoodTips experience to suit your needs and preferences as a programmer.",
-			ogTitle: "FastFoodTips - Settings | Manage Your Account and Preferences",
+			ogTitle: "Настройки вашего профиля",
 			ogDescription:
 				"Adjust your FastFoodTips settings to enhance your experience. Customize notifications, account details, and privacy settings to get the most out of the platform.",
 			ogUrl: `${WEBSITE_URL}/settings`,
 		},
 		{
 			path: "/settings/change-password",
-			title: "FastFoodTips - Change your password | Customize Your Experience",
+			title: "Смена пароля",
 			description:
 				"Manage your account settings, privacy preferences, and notification options. Tailor your FastFoodTips experience to suit your needs and preferences as a programmer.",
-			ogTitle: "FastFoodTips - CHange Your Password | Manage Your Account and Preferences",
+			ogTitle: "Смена вашего пароля",
+			ogDescription:
+				"Adjust your FastFoodTips settings to enhance your experience. Customize notifications, account details, and privacy settings to get the most out of the platform.",
+			ogUrl: `${WEBSITE_URL}/settings/change-password`,
+		},
+		{
+			path: "/pay",
+			title: "Введите код получателя",
+			description:
+				"Manage your account settings, privacy preferences, and notification options. Tailor your FastFoodTips experience to suit your needs and preferences as a programmer.",
+			ogTitle: "Введите код получателя чаевых",
+			ogDescription:
+				"Adjust your FastFoodTips settings to enhance your experience. Customize notifications, account details, and privacy settings to get the most out of the platform.",
+			ogUrl: `${WEBSITE_URL}/settings/change-password`,
+		},
+		{
+			path: "/pay/*", // Тут вместо звезды будет код который вводит пользователь 
+			title: "Отправка чаевых", // а тут после "Отправка чаевых " должен быть этот код
+			description:
+				"Manage your account settings, privacy preferences, and notification options. Tailor your FastFoodTips experience to suit your needs and preferences as a programmer.",
+			ogTitle: "Отправьте чаевые",
 			ogDescription:
 				"Adjust your FastFoodTips settings to enhance your experience. Customize notifications, account details, and privacy settings to get the most out of the platform.",
 			ogUrl: `${WEBSITE_URL}/settings/change-password`,
 		},
 		{
 			path: "*",
-			title: "FastFoodTips - Page Not Found | 404 Error",
+			title: "Такой страницы нет",
 			description:
 				"Oops! The page you are looking for does not exist. Please return to the homepage or contact our support team if you need assistance.",
-			ogTitle: "FastFoodTips - 404 Page Not Found | Lost in Space?",
+			ogTitle: "404 Page Not Found | Lost in Space?",
 			ogDescription:
 				"The page you requested couldn't be found. Go back to the home page or reach out for help if you need assistance navigating FastFoodTips.",
 			ogUrl: `${WEBSITE_URL}/404`,
@@ -119,6 +139,7 @@ export const generateJsonLd = (path: string) => {
  */
 export const generateMetaTags = (path: string, lang: LangType = "en") => {
 	const pageData = pageHelmetData[lang].find((page) => page.path === path) || pageHelmetData[lang].find((page) => page.path === "*")
+	console.log(pageData)
 
 	return {
 		title: pageData?.title || "FastFoodTips",

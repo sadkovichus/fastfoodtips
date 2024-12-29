@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.FastFoodTips.com/sitemap.xml
+Sitemap: https://fastfoodtips.vercel.app/sitemap.xml

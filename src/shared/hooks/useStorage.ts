@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import CryptoJS from "crypto-js"
 
 type StorageType = "localStorage" | "sessionStorage"

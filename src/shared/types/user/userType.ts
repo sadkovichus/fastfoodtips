@@ -7,5 +7,5 @@ export type UserType = {
 	firstname?: string,
 	lastname?: string,
 	fathername?: string,
-	avatarUrl?: string | ArrayBuffer | null
+	avatarurl?: string | ArrayBuffer | null
 }

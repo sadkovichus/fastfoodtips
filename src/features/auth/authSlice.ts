@@ -11,7 +11,7 @@ const initialState: UserType = {
 	firstname: '',
 	lastname: '',
 	fathername: '',
-	avatarUrl: '',
+	avatarurl: '',
 }
 
 const authSlice = createSlice({
@@ -22,15 +22,15 @@ const authSlice = createSlice({
 			console.log(action.payload);
 			localStorage.setItem('user', CryptoJS.AES.encrypt(JSON.stringify(action.payload), import.meta.env.VITE_USER_SECRET).toString())
 
-			state.id = action.payload.id
-			state.password = action.payload.password
-			state.balance = action.payload.balance
-			state.email = action.payload.email
-			state.token = action.payload.token
-			state.firstname = action.payload.firstname
-			state.lastname = action.payload.lastname
-			state.fathername = action.payload.fathername
-			state.avatarUrl = action.payload.avatarUrl
+			state.id = action.payload.id  || ''
+			state.password = action.payload.password || ''
+			state.balance = action.payload.balance || 0
+			state.email = action.payload.email || ''
+			state.token = action.payload.token || ''
+			state.firstname = action.payload.firstname || ''
+			state.lastname = action.payload.lastname || ''
+			state.fathername = action.payload.fathername || ''
+			state.avatarurl = action.payload.avatarurl || ''
 		},
 		logout: (state) => {
 			localStorage.removeItem('user')
@@ -42,7 +42,7 @@ const authSlice = createSlice({
 			state.firstname = ''
 			state.lastname = ''
 			state.fathername = ''
-			state.avatarUrl = ''
+			state.avatarurl = ''
 		},
 	},
 })

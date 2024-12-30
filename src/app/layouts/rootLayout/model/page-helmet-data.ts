@@ -139,7 +139,6 @@ export const generateJsonLd = (path: string) => {
  */
 export const generateMetaTags = (path: string, lang: LangType = "en") => {
 	const pageData = pageHelmetData[lang].find((page) => page.path === path) || pageHelmetData[lang].find((page) => page.path === "*")
-	console.log(pageData)
 
 	return {
 		title: pageData?.title || "FastFoodTips",

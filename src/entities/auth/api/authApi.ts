@@ -43,7 +43,14 @@ export const authApi = createApi({
 				body: JSON.stringify(data),
 			})
 		}),
+		getUserById: builder.mutation<{message: string} | UserType, { id: string }>({
+			query: (data) => ({
+				url: '/user/get-user',
+				method: 'POST',
+				body: data,
+			})
+		}),
 	}),
 })
 
-export const { useLoginMutation, useCreateUserMutation, useVerifyCodeMutation, useTokenMutation } = authApi
+export const { useLoginMutation, useCreateUserMutation, useVerifyCodeMutation, useTokenMutation, useGetUserByIdMutation } = authApi

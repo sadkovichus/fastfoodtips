@@ -9,7 +9,7 @@ import sitemap from "vite-plugin-sitemap"
 export default defineConfig({
   plugins: [
     react(),
-    sitemap({ hostname: "https://fastfoodtips.vercel.app/" }),
+    sitemap({ hostname: "http://fastfood-tips.ru" }),
     compression({ algorithm: "gzip" }) as PluginOption,
     legacy({ targets: ["defaults", "not IE 11"] }),
     VitePWA({
@@ -35,7 +35,7 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: /^https:\/\/fastfoodtips\.vercel\.app\/.*$/,
+            urlPattern: /^http:\/\/fastfood-tips\.ru\/.*$/,
             handler: "NetworkFirst",
             options: {
               cacheName: "api-cache",
@@ -72,13 +72,12 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      "/api": 'http://51.20.92.36',
-      // '/api': {
-      //   target: 'https://1199-2a02-8071-6282-a220-c1c1-9b95-44c6-e8a3.ngrok-free.app',
-      //   changeOrigin: true,
-      //   secure: false,
-      //   rewrite: (path) => path.replace(/^\/api/, '/api'),
-      // },
+      '/api': {
+        target: 'http://fastfood-tips.ru',  
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''), 
+      },
     },
     hmr: { overlay: true },
     fs: {

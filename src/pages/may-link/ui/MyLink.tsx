@@ -8,15 +8,23 @@ import { PathNames } from '@shared/config'
 export const MyLink = () => {
   const user = useAppSelector(state => state.authReducer);
   const [copiedDone, setCopiedDone] = useState({ type: false, text: '' });
-	const link = PathNames.pay + '/' + user.id?.toString();
-  const publicLink = import.meta.env.VITE_WEBSITE_URL + link
+
+  const link = `${PathNames.pay}/${user.id}`;
+  const publicLink = `${import.meta.env.VITE_WEBSITE_URL}${link}`;
 
   const copyTextToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(publicLink);
       setCopiedDone({ type: true, text: 'Ссылка скопирована!' });
+      
+      // Сброс сообщения через 3 секунды
+      setTimeout(() => {
+        setCopiedDone({ type: false, text: '' });
+      }, 3000);
+      
     } catch (err) {
       setCopiedDone({ type: false, text: 'Ссылка не была скопирована!' });
+      console.error('Ошибка копирования:', err);
     }
   };
 
@@ -39,4 +47,4 @@ export const MyLink = () => {
       </div>
     </div>
   );
-};
+}

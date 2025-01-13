@@ -3,10 +3,9 @@ import CryptoJS from "crypto-js"
 
 type StorageType = "localStorage" | "sessionStorage"
 
-const useStorage = <T>(key: string, storageType: StorageType = "localStorage"): {data: T; setData: (data: T) => void; clearStorage: () => void} => {
+const useStorage = <T>(key: string, storageType: StorageType = "localStorage"): { data: T; setData: (data: T) => void; clearStorage: () => void } => {
 	const storage = storageType === "localStorage" ? localStorage : sessionStorage
 	const secretKey = import.meta.env.VITE_USER_SECRET // Используйте свой ключ для шифрования
-	console.log(secretKey)
 
 	// Функция для расшифровки данных
 	const decryptData = (encryptedData: string | null): any => {

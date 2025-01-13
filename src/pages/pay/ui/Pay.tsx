@@ -32,7 +32,7 @@ export const Pay = () => {
       } else if ('error' in user) {
         throw new Error((user as { error: string }).error);
       } else {
-        navigate(`${PathNames.pay}/${value}`, { state: { user: user } });
+        navigate(`${PathNames.pay}/${value}`);
       }
     } catch (err) {
       console.log(handleAxiosError(err));

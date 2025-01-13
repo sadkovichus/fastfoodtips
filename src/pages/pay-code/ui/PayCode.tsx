@@ -1,6 +1,6 @@
 import { Button, Input } from '@shared/ui';
 import s from './PayCode.module.scss';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useCreatePayMutation } from '@entities/pay/api/payApi';
 import { handleAxiosError } from '@shared/lib/axios/handleAxiosError';
@@ -10,50 +10,41 @@ import { useGetUserByIdMutation } from '@entities/auth/api/authApi';
 
 export const PayCode = () => {
   const { id } = useParams();
-  const { state } = useLocation();
   const [user, setUser] = useState<UserType>();
   const [error, setError] = useState<string>();
-  const [isLoadingStatus, setIsLoadingStatus] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [getUserById] = useGetUserByIdMutation();
 
   useEffect(() => {
     const fetchUser = async () => {
-      if (!state?.user && id) {
-        try {
-          const userData = await getUserById({ id: id as string }).unwrap();
-
-          if ('message' in userData) {
-            setError(userData.message);
-            return;
-          }
-
-          if (!('name' in userData)) {
-            setError('Некорректные данные пользователя');
-            return;
-          }
-
-          setUser(userData as UserType);
-        } catch (error) {
-          setError(error instanceof Error ? error.message : 'Неизвестная ошибка');
-        } finally {
-          setIsLoadingStatus(false);
-        }
-      } else if (state?.user) {
-        setUser(state.user);
+      if (!id) {
+        setError('ID пользователя не указан');
+        setIsLoading(false);
+        return;
       }
-      await setIsLoadingStatus(false);
+
+      try {
+        const userData = await getUserById({ id }).unwrap();
+
+        if ('message' in userData) {
+          setError(userData.message);
+          return;
+        }
+
+        setUser(userData as UserType);
+      } catch (error) {
+        setError(error instanceof Error ? error.message : 'Неизвестная ошибка');
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchUser();
-  }, [id, state?.user, getUserById]);
+  }, [id, getUserById]);
 
-  if (isLoadingStatus) return <div>Загрузка...</div>;
+  if (isLoading) return <div>Загрузка...</div>;
   if (error) return <div>Ошибка: {error}</div>;
   if (!user) return <div>Пользователь не найден</div>;
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
 
   const {
     formState: { errors },
@@ -72,9 +63,9 @@ export const PayCode = () => {
   };
 
   return (
-    <div className={s.pay} onSubmit={handleSubmit(onSubmit)}>
+    <div className={s.pay}>
       <div className={s.container}>
-        <form className={s.form}>
+        <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <Input error={errors.amount?.message} type='text' {...register('amount')} placeholder='Amount' title='Amount' />
           <Button>Перевести</Button>
         </form>

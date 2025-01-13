@@ -7,6 +7,7 @@ import { handleAxiosError } from '@shared/lib/axios/handleAxiosError';
 import { useEffect, useState } from 'react';
 import { UserType } from '@shared/types';
 import { useGetUserByIdMutation } from '@entities/auth/api/authApi';
+import { UserImg } from '@shared/assets';
 
 export const PayCode = () => {
   const { id } = useParams();
@@ -21,6 +22,12 @@ export const PayCode = () => {
     handleSubmit,
     register,
   } = useForm<{ amount: string }>({ mode: 'all' });
+
+  const quickAmounts = [100, 200, 400, 600, 1000];
+
+  const handleQuickAmount = (amount: number) => {
+    handleSubmit(data => onSubmit({ amount: amount.toString() }))();
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -64,9 +71,23 @@ export const PayCode = () => {
   return (
     <div className={s.pay}>
       <div className={s.container}>
+        <img className={s.avatar} src={(user.avatarurl as string) || UserImg} alt='User avatar' />
+        <div className={s.userInfo}>
+          <h3>{[user.lastname, user.firstname, user.fathername].filter(Boolean).join(' ') || 'Пользователь'}</h3>
+          <p>{user.email}</p>
+        </div>
+
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-          <p>{user.id}</p>
-          <Input error={errors.amount?.message} type='text' {...register('amount')} placeholder='Amount' title='Amount' />
+          <Input error={errors.amount?.message} type='text' {...register('amount')} placeholder='Сумма' title='Сумма перевода' />
+
+          <div className={s.quickAmounts}>
+            {quickAmounts.map(amount => (
+              <Button key={amount} className={s.amountButton} type='button' onClick={() => handleQuickAmount(amount)}>
+                {amount} ₽
+              </Button>
+            ))}
+          </div>
+
           <Button>Перевести</Button>
         </form>
       </div>

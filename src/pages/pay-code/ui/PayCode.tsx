@@ -1,28 +1,25 @@
 import { Button, Input } from '@shared/ui';
 import s from './PayCode.module.scss';
-import { Navigate, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useCreatePayMutation } from '@entities/pay/api/payApi';
 import { handleAxiosError } from '@shared/lib/axios/handleAxiosError';
-import { PathNames } from '@shared/config';
 import { useEffect, useState } from 'react';
-import { useGetUserByIdMutation } from '@entities/auth/api/authApi';
 import { UserType } from '@shared/types'
+import { useGetUserByIdMutation } from '@entities/auth/api/authApi'
 
 export const PayCode = () => {
   const { id } = useParams();
   const { state } = useLocation();
   const [user, setUser] = useState<UserType>();
-  const [getUserById, { isLoading }] = useGetUserByIdMutation();
-  const [isLoadingStatus, setIsLoadingStatus] = useState(isLoading);
-  // ... existing code ...
   const [error, setError] = useState<string>();
+  const [isLoadingStatus, setIsLoadingStatus] = useState(true);
+  const [getUserById] = useGetUserByIdMutation();
 
   useEffect(() => {
     const fetchUser = async () => {
       if (!state?.user && id) {
         try {
-          setIsLoadingStatus(true);
           const userData = await getUserById({ id: id as string }).unwrap();
 
           if ('message' in userData) {
@@ -38,17 +35,19 @@ export const PayCode = () => {
           setUser(userData as UserType);
         } catch (error) {
           setError(error instanceof Error ? error.message : 'Неизвестная ошибка');
-        } finally {
-          setIsLoadingStatus(false);
         }
+      } else if (state?.user) {
+        setUser(state.user);
       }
+      setIsLoadingStatus(false);
     };
-    fetchUser();
-  }, [state?.user, id]);
 
-  if (error) return <div>Ошибка: {error}</div>;
+    fetchUser();
+  }, [id, state?.user, getUserById]);
 
   if (isLoadingStatus) return <div>Загрузка...</div>;
+  if (error) return <div>Ошибка: {error}</div>;
+  if (!user) return <div>Пользователь не найден</div>;
 
   useEffect(() => {
     console.log(user);

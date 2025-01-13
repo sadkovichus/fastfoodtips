@@ -5,8 +5,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useCreatePayMutation } from '@entities/pay/api/payApi';
 import { handleAxiosError } from '@shared/lib/axios/handleAxiosError';
 import { useEffect, useState } from 'react';
-import { UserType } from '@shared/types'
-import { useGetUserByIdMutation } from '@entities/auth/api/authApi'
+import { UserType } from '@shared/types';
+import { useGetUserByIdMutation } from '@entities/auth/api/authApi';
 
 export const PayCode = () => {
   const { id } = useParams();
@@ -35,11 +35,13 @@ export const PayCode = () => {
           setUser(userData as UserType);
         } catch (error) {
           setError(error instanceof Error ? error.message : 'Неизвестная ошибка');
+        } finally {
+          setIsLoadingStatus(false);
         }
       } else if (state?.user) {
         setUser(state.user);
       }
-      setIsLoadingStatus(false);
+      await setIsLoadingStatus(false);
     };
 
     fetchUser();

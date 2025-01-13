@@ -21,12 +21,16 @@ export const PayCode = () => {
     formState: { errors },
     handleSubmit,
     register,
+    setValue,
+    watch,
   } = useForm<{ amount: string }>({ mode: 'all' });
 
   const quickAmounts = [100, 200, 400, 600, 1000];
+  const currentAmount = watch('amount');
 
   const handleQuickAmount = (amount: number) => {
-    handleSubmit(data => onSubmit({ amount: amount.toString() }))();
+    const currentValue = currentAmount ? parseInt(currentAmount) : 0;
+    setValue('amount', (currentValue + amount).toString());
   };
 
   useEffect(() => {
@@ -78,7 +82,7 @@ export const PayCode = () => {
         </div>
 
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-          <Input error={errors.amount?.message} type='text' {...register('amount')} placeholder='Сумма' title='Сумма перевода' />
+          <Input error={errors.amount?.message} type='number' {...register('amount')} placeholder='0₽' title='Сумма перевода' />
 
           <div className={s.quickAmounts}>
             {quickAmounts.map(amount => (

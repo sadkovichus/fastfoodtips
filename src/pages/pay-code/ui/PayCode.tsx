@@ -14,6 +14,13 @@ export const PayCode = () => {
   const [error, setError] = useState<string>();
   const [isLoading, setIsLoading] = useState(true);
   const [getUserById] = useGetUserByIdMutation();
+  const [createPay] = useCreatePayMutation();
+
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = useForm<{ amount: string }>({ mode: 'all' });
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -28,10 +35,9 @@ export const PayCode = () => {
 
         if ('message' in userData) {
           setError(userData.message);
-          return;
+        } else {
+          setUser(userData as UserType);
         }
-
-        setUser(userData as UserType);
       } catch (error) {
         setError(error instanceof Error ? error.message : 'Неизвестная ошибка');
       } finally {
@@ -42,17 +48,6 @@ export const PayCode = () => {
     fetchUser();
   }, [id, getUserById]);
 
-  if (isLoading) return <div>Загрузка...</div>;
-  if (error) return <div>Ошибка: {error}</div>;
-  if (!user) return <div>Пользователь не найден</div>;
-
-  const {
-    formState: { errors },
-    handleSubmit,
-    register,
-  } = useForm<{ amount: string }>({ mode: 'all' });
-  const [createPay] = useCreatePayMutation();
-
   const onSubmit: SubmitHandler<{ amount: string }> = async data => {
     try {
       const response = await createPay({ amount: data.amount, userId: id as string }).unwrap();
@@ -62,10 +57,15 @@ export const PayCode = () => {
     }
   };
 
+  if (isLoading) return <div>Загрузка...</div>;
+  if (error) return <div>Ошибка: {error}</div>;
+  if (!user) return <div>Пользователь не найден</div>;
+
   return (
     <div className={s.pay}>
       <div className={s.container}>
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+          <p>{user.id}</p>
           <Input error={errors.amount?.message} type='text' {...register('amount')} placeholder='Amount' title='Amount' />
           <Button>Перевести</Button>
         </form>

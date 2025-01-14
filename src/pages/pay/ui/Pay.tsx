@@ -9,7 +9,7 @@ import { handleAxiosError } from '@shared/lib/axios/handleAxiosError';
 export const Pay = () => {
   const [value, setValue] = useState('');
   const navigate = useNavigate();
-  const [getUserById] = useGetUserByIdMutation();
+  const [getUserById, { isLoading }] = useGetUserByIdMutation();
   const [errorMessage, setErrorMessage] = useState('');
 
   const formatValue = (input: string) => {
@@ -53,7 +53,7 @@ export const Pay = () => {
           placeholder='Введите код получателя'
           className={s.input}
         />
-        <Button>Перейти</Button>
+        <Button>{isLoading ? 'Переход...' : 'Перейти'}</Button>
       </form>
     </div>
   );

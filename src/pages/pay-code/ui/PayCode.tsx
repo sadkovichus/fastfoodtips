@@ -92,7 +92,7 @@ export const PayCode = () => {
             ))}
           </div>
 
-          <Button>Перевести</Button>
+          <Button>{isLoading ? 'Перевод...' : 'Перевести'}</Button>
         </form>
       </div>
     </div>

@@ -1,8 +1,8 @@
 import { store } from '@app/store';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
-import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
+import { DynamicMetaProvider } from './dynamicMetaProvider'
 
 type Props = { children: ReactNode };
 
@@ -12,7 +12,7 @@ export const Providers = ({ children }: Props) => {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <HelmetProvider>{children}</HelmetProvider>
+        <DynamicMetaProvider>{children}</DynamicMetaProvider>
       </Provider>
     </QueryClientProvider>
   );

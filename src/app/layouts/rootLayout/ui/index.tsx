@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Outlet, useLocation } from 'react-router-dom';
 import { generateMetaTags } from '../model/page-helmet-data';
 import { useDynamicMeta } from '@shared/hooks/useDynamicMeta';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
 export const RootLayout = () => {
   const location = useLocation();

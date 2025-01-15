@@ -1,11 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 import { Outlet, useLocation } from 'react-router-dom';
 import { generateMetaTags } from '../model/page-helmet-data';
+import { useDynamicMeta } from '@shared/hooks/useDynamicMeta';
+import { useEffect, useMemo } from 'react';
 
 export const RootLayout = () => {
   const location = useLocation();
-  const pathanme = location.pathname[location.pathname.length - 1] === '/' ? location.pathname.slice(0, -1) : location.pathname 
-  const metaTags = generateMetaTags(pathanme || '/');
+  const pathname = location.pathname.endsWith('/') ? location.pathname.slice(0, -1) : location.pathname;
+  const { dynamicMeta } = useDynamicMeta();
+
+  const metaTags = useMemo(() => {
+    return generateMetaTags(pathname || '/', dynamicMeta);
+  }, [pathname, dynamicMeta]);
 
   return (
     <>

@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { UserType } from '@shared/types';
 import { useGetUserByIdMutation } from '@entities/auth/api/authApi';
 import { UserImg } from '@shared/assets';
+import { useDynamicMeta } from '@shared/hooks/useDynamicMeta'
 
 export const PayCode = () => {
   const { id } = useParams();
@@ -16,6 +17,7 @@ export const PayCode = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [getUserById] = useGetUserByIdMutation();
   const [createPay] = useCreatePayMutation();
+  const { setDynamicMeta } = useDynamicMeta();
 
   const {
     formState: { errors },
@@ -55,6 +57,12 @@ export const PayCode = () => {
         setIsLoading(false);
       }
     };
+
+    setDynamicMeta({
+      'og:title': `Отправка чаевых для ${user?.firstname}`,
+      'og:description': `Отправка чаевых для ${user?.firstname}`,
+      'og:image': `${user?.avatarurl}`,
+    });
 
     fetchUser();
   }, [id, getUserById]);

@@ -14,8 +14,6 @@ export type PageHelmetDataType = {
 }
 
 
-
-
 const pageHelmetData: Record<LangType, PageHelmetDataType[]> = {
 	en: [
 		{
@@ -128,37 +126,36 @@ export const generateJsonLd = (path: string) => {
 		"@context": "http://schema.org",
 		"@type": "WebPage",
 		url: `${WEBSITE_URL}${path}`,
-		name: "FastFoodTips",
+		name: "VeilPay",
 		description:
-			"FastFoodTips это онлайн сервис для отправки чаевых.",
+			"VeilPay - This is an online service for making transfers and payments, the main point of which is anonymity.",
 	}
 }
 
 /**
  * Генерация мета-тегов
- */
-export const generateMetaTags = (path: string, lang: LangType = "en") => {
-	const pageData = pageHelmetData[lang].find((page) => page.path === path) || pageHelmetData[lang].find((page) => page.path === "*")
+ */export const generateMetaTags = (path: string, dynamicMeta?: Record<string, string>, lang: LangType = "en") => {
+	const pageData =
+		pageHelmetData[lang].find((page) => page.path === path) ||
+		pageHelmetData[lang].find((page) => page.path === "*")
 
-	return {
-		title: pageData?.title || "FastFoodTips",
+	const mergedMeta = {
+		title: dynamicMeta?.title || pageData?.title || "VeilPay", // Используем dynamicMeta.title, если он есть
 		meta: {
 			charset: "utf-8",
 			viewport: "width=device-width, initial-scale=1",
-			description: pageData?.description || "FastFoodTips is your go-to platform.",
-			"og:title": pageData?.ogTitle || pageData?.title,
-			"og:description": pageData?.ogDescription || pageData?.description,
-			"og:url": pageData?.ogUrl || `${WEBSITE_URL}${path}`,
-			"og:image": pageData?.ogImage || DEFAULT_IMAGE,
+			description: dynamicMeta?.description || pageData?.description || "VeilPay is your go-to platform.",
+			"og:title": dynamicMeta?.['og:title'] || pageData?.ogTitle || pageData?.title,
+			"og:description": dynamicMeta?.['og:description'] || pageData?.ogDescription || pageData?.description,
+			"og:url": dynamicMeta?.['og:url'] || pageData?.ogUrl || `${WEBSITE_URL}${path}`,
+			"og:image": dynamicMeta?.['og:image'] || pageData?.ogImage || DEFAULT_IMAGE,
 			"og:type": "website",
 			"twitter:card": "summary_large_image",
-			"twitter:title": pageData?.ogTitle || pageData?.title,
-			"twitter:description": pageData?.ogDescription || pageData?.description,
-			"twitter:image": pageData?.ogImage || DEFAULT_IMAGE,
+			"twitter:title": dynamicMeta?.['twitter:title'] || pageData?.ogTitle || pageData?.title,
+			"twitter:description": dynamicMeta?.['twitter:description'] || pageData?.ogDescription || pageData?.description,
+			"twitter:image": dynamicMeta?.['twitter:image'] || DEFAULT_IMAGE,
 		},
-		link: [
-			{ rel: "icon", href: DEFAULT_IMAGE },
-		],
+		link: [{ rel: dynamicMeta?.['link:rel'] || 'icon', href: dynamicMeta?.['link:href'] || DEFAULT_IMAGE }],
 		script: [
 			{
 				type: "application/ld+json",
@@ -166,6 +163,9 @@ export const generateMetaTags = (path: string, lang: LangType = "en") => {
 			},
 		],
 	}
+
+	return mergedMeta
 }
+
 
 export { pageHelmetData, WEBSITE_URL, DEFAULT_IMAGE }

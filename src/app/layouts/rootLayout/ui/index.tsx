@@ -29,8 +29,8 @@ export const RootLayout = () => {
         <meta name='twitter:title' content={metaTags.meta['twitter:title']} />
         <meta name='twitter:description' content={metaTags.meta['twitter:description']} />
         <meta name='twitter:image' content={metaTags.meta['twitter:image']} />
-        <link rel='icon' href={metaTags.link[0].href} />
-        <script type='application/ld+json'>{metaTags.script[0].innerHTML}</script>
+        {metaTags.link?.[0]?.href && <link rel='icon' href={metaTags.link[0].href} />}
+        {metaTags.script?.[0]?.innerHTML && <script type='application/ld+json'>{metaTags.script[0].innerHTML}</script>}
       </Helmet>
       <Outlet />
     </>

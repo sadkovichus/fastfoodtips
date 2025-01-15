@@ -1,6 +1,6 @@
 import { Button, Input } from '@shared/ui';
 import s from './PayCode.module.scss';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useCreatePayMutation } from '@entities/pay/api/payApi';
 import { handleAxiosError } from '@shared/lib/axios/handleAxiosError';
@@ -9,6 +9,7 @@ import { UserType } from '@shared/types';
 import { useGetUserByIdMutation } from '@entities/auth/api/authApi';
 import { UserImg } from '@shared/assets';
 import { useDynamicMeta } from '@shared/hooks/useDynamicMeta'
+import { PathNames } from '@shared/config'
 
 export const PayCode = () => {
   const { id } = useParams();
@@ -77,7 +78,7 @@ export const PayCode = () => {
   };
 
   if (isLoading) return <div>Загрузка...</div>;
-  if (error) return <div>Ошибка: {error}</div>;
+  if (error) return <Navigate to={PathNames.root} replace/>;
   if (!user) return <div>Пользователь не найден</div>;
 
   return (

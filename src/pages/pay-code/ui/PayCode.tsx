@@ -64,6 +64,7 @@ export const PayCode = () => {
     };
 
     setDynamicMeta({
+      'title': `Отправить чаевые для ${user?.firstname}`,
       'og:title': `Отправка чаевых для ${user?.firstname}`,
       'og:description': `Отправка чаевых для ${user?.firstname}`,
       'og:image': `${user?.avatarurl}`,

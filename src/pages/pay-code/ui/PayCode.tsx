@@ -8,8 +8,8 @@ import { useEffect, useState } from 'react';
 import { UserType } from '@shared/types';
 import { useGetUserByIdMutation } from '@entities/auth/api/authApi';
 import { UserImg } from '@shared/assets';
-import { useDynamicMeta } from '@shared/hooks/useDynamicMeta'
-import { PathNames } from '@shared/config'
+import { useDynamicMeta } from '@shared/hooks/useDynamicMeta';
+import { PathNames } from '@shared/config';
 
 export const PayCode = () => {
   const { id } = useParams();
@@ -33,7 +33,11 @@ export const PayCode = () => {
 
   const handleQuickAmount = (amount: number) => {
     const currentValue = currentAmount ? parseInt(currentAmount) : 0;
-    setValue('amount', (currentValue + amount).toString());
+    if (!isNaN(currentValue)) {
+      setValue('amount', (currentValue + amount).toString());
+    } else {
+      setValue('amount', amount.toString());
+    }
   };
 
   useEffect(() => {
@@ -78,7 +82,7 @@ export const PayCode = () => {
   };
 
   if (isLoading) return <div>Загрузка...</div>;
-  if (error) return <Navigate to={PathNames.root} replace/>;
+  if (error) return <Navigate to={PathNames.root} replace />;
   if (!user) return <div>Пользователь не найден</div>;
 
   return (
@@ -91,7 +95,7 @@ export const PayCode = () => {
         </div>
 
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-          <Input error={errors.amount?.message} type='number' {...register('amount')} placeholder='0₽' title='Сумма перевода' />
+          <Input value={currentAmount} error={errors.amount?.message} type='number' min='0' {...register('amount')} placeholder='0₽' title='Сумма перевода' />
 
           <div className={s.quickAmounts}>
             {quickAmounts.map(amount => (

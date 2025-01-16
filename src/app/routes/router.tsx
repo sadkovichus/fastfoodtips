@@ -10,12 +10,17 @@ import { Pay } from '@pages/pay';
 import { PayCode } from '@pages/pay-code'
 import { Settings } from '@pages/settings';
 import { PathNames } from '@shared/config';
+import { ErrorBoundary } from '@shared/ui'
 import { RouteObject } from 'react-router-dom';
 
 export const router: RouteObject[] = [
   {
     path: PathNames.root,
-    element: <RootLayout />,
+    element: (
+      <ErrorBoundary>
+        <RootLayout />
+      </ErrorBoundary>
+    ),
     children: [
       {
         element: <MainLayout />,
@@ -34,8 +39,8 @@ export const router: RouteObject[] = [
               },
               {
                 path: PathNames.changePassword,
-                element: <ChangePasswordForm />
-              }
+                element: <ChangePasswordForm />,
+              },
             ],
           },
           {
@@ -46,7 +51,7 @@ export const router: RouteObject[] = [
       },
       {
         path: PathNames.pay,
-        element: <Pay />
+        element: <Pay />,
       },
       {
         path: PathNames.pay + '/:id',
@@ -70,11 +75,11 @@ export const router: RouteObject[] = [
           },
         ],
       },
+      //? 404 page ↓
+      {
+        path: '*',
+        element: <p>Not found page</p>,
+      },
     ],
-  },
-  //? 404 page ↓
-  {
-    path: '*',
-    element: <p>Not found page</p>,
   },
 ];

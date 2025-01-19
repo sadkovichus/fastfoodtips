@@ -7,6 +7,8 @@ export const PathNames = {
 	settings: '/settings', //?
 	changePassword: '/settings/change-password', //?
 	myLink: '/my-link',
+	license: '/agreement',
+	authorInfo: '/author-info',
 } as const
 
 export type PathNamesKeys = keyof typeof PathNames

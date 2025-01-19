@@ -46,7 +46,7 @@ export const authApi = createApi({
 		getUserById: builder.mutation<{message: string} | UserType, { id: string }>({
 			query: (data) => ({
 				url: '/user/get-user',
-				method: 'POST',
+				method: 'GET',
 				body: data,
 			})
 		}),

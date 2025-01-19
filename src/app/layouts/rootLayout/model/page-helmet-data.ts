@@ -106,6 +106,16 @@ const pageHelmetData: Record<LangType, PageHelmetDataType[]> = {
 			ogUrl: `${WEBSITE_URL}/settings/change-password`,
 		},
 		{
+			path: "/license", // Тут вместо звезды будет код который вводит пользователь 
+			title: "Лицензионное соглашение", // а тут после "Отправка чаевых " должен быть этот код
+			description:
+				"Manage your account settings, privacy preferences, and notification options. Tailor your FastFoodTips experience to suit your needs and preferences as a programmer.",
+			ogTitle: "Отправьте чаевые",
+			ogDescription:
+				"Adjust your FastFoodTips settings to enhance your experience. Customize notifications, account details, and privacy settings to get the most out of the platform.",
+			ogUrl: `${WEBSITE_URL}/settings/change-password`,
+		},
+		{
 			path: "*",
 			title: "Такой страницы нет",
 			description:

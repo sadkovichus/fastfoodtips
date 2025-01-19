@@ -1,0 +1,46 @@
+.license {
+	display: flex;
+	justify-content: center;
+	overflow: auto;
+}
+
+.title, .subtitle {
+	text-align: center;
+}
+
+.subtitle {
+	max-width: 800px;
+	margin:  0 auto;
+}
+
+.container {
+	max-width: 1000px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 20px 5px;
+}
+
+.list {
+	margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	.value {
+		display: flex;
+		max-width: 700px;
+		width: 100%;
+		gap: 10px;
+	}
+}
+
+.sub-list {
+	gap: 10px;
+	margin-left: 10px;
+}
+
+.last-subtitle {
+	margin: 50px auto 20px auto;
+}

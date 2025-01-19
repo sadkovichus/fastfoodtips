@@ -5,6 +5,7 @@ import { AuthFormInputs } from '@features/auth/model/type';
 import { Link } from 'react-router-dom';
 import { emailValidation, passwordValidation } from '@shared/const';
 import { useCallback, useEffect } from 'react'
+import { PathNames } from '@shared/config'
 
 interface AuthFormProps {
   onSubmit: SubmitHandler<AuthFormInputs>;
@@ -56,7 +57,7 @@ export const AuthForm = ({ onSubmit, isLoading, message, mode, btnText }: AuthFo
           handleChecked={clearConditionsError}
           error={errors.conditions?.message}
           {...register('conditions', { required: 'Вы должны согласиться с Договором аферты' })}>
-          <Link to='/terms'>Договор оферты и соглашение о персональных данных</Link> При нарушении правил использования сервиса, виртуальная карта
+          <Link to={PathNames.license}>Договор оферты и соглашение о персональных данных</Link> При нарушении правил использования сервиса, виртуальная карта
           будет заблокирована вместе с вашими средствами
         </CheckBox>
       )}

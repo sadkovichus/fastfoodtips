@@ -26,7 +26,7 @@ export const settingsApi = createApi({
 				body: JSON.stringify(data),
 			})
 		}),
-		uploadAvatar: builder.mutation<UserType, { avatar: string; id: string }>({
+		uploadAvatar: builder.mutation<{ message: string; url: string } | {message: string}, {avatar: string; id: string}>({
 			query: (data) => ({
 				url: '/uploads/upload-avatar',
 				method: 'PATCH',

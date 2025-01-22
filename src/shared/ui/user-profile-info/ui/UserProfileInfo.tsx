@@ -1,13 +1,13 @@
 import { useAppSelector } from '@shared/hooks/useAppSelector';
 import s from './UserProfileInfo.module.scss';
 import { UserImg } from '@shared/assets';
-import { useUploadAvatarMutation } from '@entities/settings/api/settingApi'
-import { useAppDispatch } from '@shared/hooks/useAppDispatch'
-import { setUser } from '@features/auth/authSlice'
+import { useUploadAvatarMutation } from '@entities/settings/api/settingApi';
+import { useAppDispatch } from '@shared/hooks/useAppDispatch';
+import { setUser } from '@features/auth/authSlice';
 
 export const UserProfileInfo = () => {
   const user = useAppSelector(state => state.authReducer);
-  const [uploadAvatar, {isLoading}] = useUploadAvatarMutation();
+  const [uploadAvatar, { isLoading }] = useUploadAvatarMutation();
   const dispatch = useAppDispatch();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,8 +20,9 @@ export const UserProfileInfo = () => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = async function () {
-          await uploadAvatar({avatar: (reader.result as string), id: user.id}).unwrap();
-          dispatch(setUser({...user, avatarurl: reader.result}));
+          await uploadAvatar({ avatar: reader.result as string, id: user.id }).unwrap();
+          if (!('url' in uploadAvatar)) return new Error ('Произошла ошибка при загрузке аватара');
+          dispatch(setUser({ ...user, avatarurl: uploadAvatar.url as string }));
         };
         reader.onerror = function () {
           console.log(reader.error);
@@ -37,7 +38,7 @@ export const UserProfileInfo = () => {
   return (
     <div className={s['text-info']}>
       <label htmlFor='user-photo-input' className={s.photo}>
-        <img src={user.avatarurl ? user.avatarurl as string : UserImg} alt='' />
+        <img src={user.avatarurl ? (user.avatarurl as string) : UserImg} alt='' />
         <input onChange={handleFileChange} type='file' id='user-photo-input' />
       </label>
       <div className={s.info}>

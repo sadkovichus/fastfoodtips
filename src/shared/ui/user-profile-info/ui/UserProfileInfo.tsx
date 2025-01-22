@@ -44,7 +44,7 @@ export const UserProfileInfo = () => {
   return (
     <div className={s['text-info']}>
       <label htmlFor='user-photo-input' className={s.photo}>
-        <img src={user.avatarurl ? (user.avatarurl as string) : UserImg} alt='' />
+        <img src={'https://s3.ru1.storage.beget.cloud/0d359ab52f5c-fastfoodtips/uploads/1737582664151.jpg'} alt='' />
         <input onChange={handleFileChange} type='file' id='user-photo-input' />
       </label>
       <div className={s.info}>

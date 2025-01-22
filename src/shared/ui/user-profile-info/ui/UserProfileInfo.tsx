@@ -4,6 +4,7 @@ import { UserImg } from '@shared/assets';
 import { useUploadAvatarMutation } from '@entities/settings/api/settingApi';
 import { useAppDispatch } from '@shared/hooks/useAppDispatch';
 import { setUser } from '@features/auth/authSlice';
+import { useEffect } from 'react';
 
 export const UserProfileInfo = () => {
   const user = useAppSelector(state => state.authReducer);
@@ -21,7 +22,8 @@ export const UserProfileInfo = () => {
         reader.readAsDataURL(file);
         reader.onload = async function () {
           await uploadAvatar({ avatar: reader.result as string, id: user.id }).unwrap();
-          if (!('url' in uploadAvatar)) return new Error ('Произошла ошибка при загрузке аватара');
+          if (!('url' in uploadAvatar)) return new Error('Произошла ошибка при загрузке аватара');
+          console.log(uploadAvatar);
           dispatch(setUser({ ...user, avatarurl: uploadAvatar.url as string }));
         };
         reader.onerror = function () {
@@ -32,6 +34,10 @@ export const UserProfileInfo = () => {
       }
     }
   };
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   if (isLoading || !user) return <p>Загрузка...</p>;
 

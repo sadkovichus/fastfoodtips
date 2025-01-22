@@ -12,7 +12,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 
       // Проверка длины
       if (maxLength && newValue.length > maxLength) {
-        console.log(maxLength, newValue.length);
         return setValue(prev => prev);
       }
 

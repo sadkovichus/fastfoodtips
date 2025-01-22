@@ -19,7 +19,6 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		setUser: (state, action: PayloadAction<UserType>) => {
-			console.log(action.payload);
 			localStorage.setItem('user', CryptoJS.AES.encrypt(JSON.stringify(action.payload), import.meta.env.VITE_USER_SECRET).toString())
 
 			state.id = action.payload.id  || ''

@@ -16,7 +16,6 @@ export const CreateForm = () => {
     try {
       delete data.conditions;
       const response = await createUser(data).unwrap();
-      console.log(response);
       if ('email' in response) return navigate(PathNames.verify, { state: { email: response.email, password: response.password }, replace: true });
       setUserMessage((response as { message: string }).message);
     } catch (err) {

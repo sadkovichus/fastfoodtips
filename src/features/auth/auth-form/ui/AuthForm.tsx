@@ -31,11 +31,7 @@ export const AuthForm = ({ onSubmit, isLoading, message, mode, btnText }: AuthFo
     },
     [clearErrors, setValue]
   );
-
-  useEffect(() => {
-    console.log(message);
-  }, [message])
-
+  
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
       <Input

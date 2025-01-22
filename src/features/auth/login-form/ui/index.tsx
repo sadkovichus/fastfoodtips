@@ -19,7 +19,6 @@ export const LoginForm = () => {
     try {
       delete data.conditions;
       const response = await login(data).unwrap();
-      console.log(response);
       if ('message' in response) return setUserMessage((response as { message: string }).message);
       dispatch(setUser(response));
       navigate(PathNames.root, { replace: true });

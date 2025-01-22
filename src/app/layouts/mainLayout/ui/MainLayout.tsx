@@ -9,21 +9,22 @@ import { Header } from '@entities/home';
 import { decryptData } from '@shared/utils';
 import { Navigation } from './Navigation';
 import { useGetUserByIdMutation } from '@entities/auth/api/authApi';
+import { UserType } from '@shared/types';
 
 export const MainLayout = () => {
-  const { email, id } = useAppSelector(state => state.authReducer);
+  const { email } = useAppSelector(state => state.authReducer);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
   const [getUserById, { isLoading, error }] = useGetUserByIdMutation();
 
-  const storageUser = useMemo(() => {
+  const storageUser: UserType | null = useMemo(() => {
     return decryptData(localStorage.getItem('user') || 'null');
   }, []);
 
   const getUser = async () => {
     try {
-      const response = await getUserById({ id }).unwrap();
+      const response = await getUserById({ id: storageUser?.id || '' }).unwrap();
       if ('message' in response) {
         dispatch(logout());
         throw new Error((response as { message: string }).message);

@@ -9,7 +9,7 @@ import sitemap from "vite-plugin-sitemap"
 export default defineConfig({
   plugins: [
     react(),
-    sitemap({ hostname: "http://fastfood-tips.ru" }),
+    sitemap({ hostname: "https://fastfood-tips.ru" }),
     compression({ algorithm: "gzip" }) as PluginOption,
     legacy({ targets: ["defaults", "not IE 11"] }),
     VitePWA({
@@ -24,7 +24,7 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           {
-            urlPattern: /\.(?:js|css|woff2?|png|jpg|jpeg|svg|gif)$/,
+            urlPattern: /\.(?:js|css|woff2?|png|jpg|jpeg|svg|gif)$/i,
             handler: "CacheFirst",
             options: {
               cacheName: "static-assets",
@@ -32,17 +32,16 @@ export default defineConfig({
                 maxEntries: 100,
                 maxAgeSeconds: 60 * 60 * 24 * 7,
               },
+              cacheableResponse: {
+                statuses: [200],
+              },
             },
           },
           {
-            urlPattern: /^http:\/\/fastfood-tips\.ru\/.*$/,
+            urlPattern: /\.(?:png|jpg|jpeg|svg|gif)$/i,
             handler: "NetworkFirst",
             options: {
-              cacheName: "api-cache",
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24,
-              },
+              cacheName: "dynamic-assets",
             },
           },
         ],
@@ -73,10 +72,10 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://fastfood-tips.ru',  
+        target: 'https://fastfood-tips.ru',
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ''), 
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
     hmr: { overlay: true },

@@ -1,19 +1,19 @@
 html[data-theme='dark'] {
   /*? Цвета фона ?*/
-  --background-color: #2b2738;
+  --background-color: #ebebeb;
   /* Основной фон страницы */
   --block-background-color: #122023;
   /* Фон блоков */
 
   /*? Цвета текста ?*/
-  --text-color: #fefefe;
+  --text-color: #3f4657;
   /* Основной цвет текста */
   --secondary-text-color: #9795a1;
   /* Вторичный цвет текста */
 
   /*? Цвета кнопок ?*/
-  --button-background-color: #6e54b5;
-  --button-background-color-hover: #8164d2;
+  --button-background-color: linear-gradient(214deg, rgba(202, 255, 149, 1) 0%, rgba(255, 115, 167, 1) 100%);
+  --button-background-color-hover: linear-gradient(190deg, rgba(202, 255, 149, 1) 0%, rgba(255, 115, 167, 1) 100%);
   /* Фон кнопок */
   --button-text-color: #ffffff;
   /* Цвет текста на кнопках */
@@ -40,6 +40,6 @@ html[data-theme='dark'] {
   --blue-color-opacity: rgba(59, 73, 223, 0.4);
 
   /* Цвет инпута */
-  --input-background-color: #3b364c;
-  --input-border-color: #9280bd;
+  --input-background-color: #e4deda;
+  --input-border-color: #e6d3c7;
 }

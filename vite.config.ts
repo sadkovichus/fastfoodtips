@@ -87,6 +87,7 @@ export default defineConfig({
   build: {
     target: "esnext",
     outDir: "dist",
+    assetsInlineLimit: 0,
     rollupOptions: {
       external: ["workbox-window"],
       input: path.resolve(__dirname, "index.html"),

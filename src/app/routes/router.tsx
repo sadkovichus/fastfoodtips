@@ -48,6 +48,10 @@ export const router: RouteObject[] = [
             path: PathNames.myLink,
             element: <MyLink />,
           },
+          {
+            path: PathNames.withdraw,
+            element: <p>Withdraw</p>,
+          }
         ],
       },
       {

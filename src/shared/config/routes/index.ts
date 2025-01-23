@@ -4,6 +4,7 @@ export const PathNames = {
 	create: '/auth/create', //?
 	verify: '/auth/verify', //?
 	pay: '/pay',
+	withdraw: '/withdraw',
 	settings: '/settings', //?
 	changePassword: '/settings/change-password', //?
 	myLink: '/my-link',

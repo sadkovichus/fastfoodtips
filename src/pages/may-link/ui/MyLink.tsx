@@ -40,7 +40,7 @@ export const MyLink = () => {
         </div>
         <div className={s.bottom}>
           <Link className={s.link} to={link}>
-            <QRCodeSVG bgColor='#2b2738' fgColor='white' value={import.meta.env.VITE_WEBSITE_URL + link} className={s.qrcode} />
+            <QRCodeSVG bgColor='#ebebeb' fgColor='#2b2738' value={import.meta.env.VITE_WEBSITE_URL + link} className={s.qrcode} />
           </Link>
           <p className={s.code}>{user.id?.toString()}</p>
         </div>

@@ -64,7 +64,7 @@ export const PayCode = () => {
     };
 
     setDynamicMeta({
-      'title': `Отправить чаевые для ${user?.firstname}`,
+      title: `Отправить чаевые для ${user?.firstname}`,
       'og:title': `Отправка чаевых для ${user?.firstname}`,
       'og:description': `Отправка чаевых для ${user?.firstname}`,
       'og:image': `${user?.avatarurl}`,
@@ -89,14 +89,24 @@ export const PayCode = () => {
   return (
     <div className={s.pay}>
       <div className={s.container}>
-        <img className={s.avatar} src={(user.avatarurl as string) || UserImg} alt='User avatar' />
+        <div className={s['avatar-container']}>
+          <img className={s.avatar} src={(user.avatarurl as string) || UserImg} alt='User avatar' />
+        </div>
         <div className={s.userInfo}>
           <h3>{[user.lastname, user.firstname, user.fathername].filter(Boolean).join(' ') || 'Пользователь'}</h3>
           <p>{user.email}</p>
         </div>
 
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-          <Input value={currentAmount} error={errors.amount?.message} type='number' min='0' {...register('amount')} placeholder='0₽' title='Сумма перевода' />
+          <Input
+            value={currentAmount}
+            error={errors.amount?.message}
+            type='number'
+            min='0'
+            {...register('amount')}
+            placeholder='0₽'
+            title='Сумма перевода'
+          />
 
           <div className={s.quickAmounts}>
             {quickAmounts.map(amount => (

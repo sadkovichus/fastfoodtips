@@ -95,6 +95,6 @@
 	font-family: Inter;
 
 	&:hover {
-		background-color: #48425d;
+		background-color: var(--block-background-color-hover);
 	}
 }

@@ -1,15 +1,17 @@
 .btn {
 	background: var(--button-background-color);
-	border: 1px solid transparent;
+	border: none;
 	border-radius: 5px;
 	padding: 10px 20px;
-	transition-duration: .2s;
-	cursor: pointer;
+	transition: background 1s ease, color 0.5s ease, background-position .5s;
+	background-position: 100% 200%;
+	background-size: 200% 200%;
 
 	color: #FFF;
 	font-size: 15px;
+}
 
-	&:hover {
-		background-color: var(--button-background-color-hover);
-	}
+.btn:hover {
+	background-position: 10% 10%;
+	/* Изменение градиента при наведении */
 }

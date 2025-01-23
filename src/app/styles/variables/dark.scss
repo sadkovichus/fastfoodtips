@@ -2,7 +2,7 @@ html[data-theme='dark'] {
   /*? Цвета фона ?*/
   --background-color: #ebebeb;
   /* Основной фон страницы */
-  --block-background-color: #122023;
+  --block-background-color: #f5fcfe;
   /* Фон блоков */
 
   /*? Цвета текста ?*/
@@ -12,18 +12,18 @@ html[data-theme='dark'] {
   /* Вторичный цвет текста */
 
   /*? Цвета кнопок ?*/
-  --button-background-color: linear-gradient(214deg, rgba(202, 255, 149, 1) 0%, rgba(255, 115, 167, 1) 100%);
+  --button-background-color: linear-gradient(214deg, rgb(240, 195, 90) 0%, rgba(255, 115, 167, 1) 100%);
   --button-background-color-hover: linear-gradient(190deg, rgba(202, 255, 149, 1) 0%, rgba(255, 115, 167, 1) 100%);
   /* Фон кнопок */
   --button-text-color: #ffffff;
   /* Цвет текста на кнопках */
 
   /*? Цвета обводки ?*/
-  --border-color: #333;
+  --border-color: #e7d4c8;
   /* Цвет обводки элементов */
 
   /*? Эффект наведения на кнопки ?*/
-  --button-hover-background-color: #3b49df66;
+  --button-hover-background-color: #c4c5d766;
   /* Фон кнопок при наведении */
   --button-hover-text-color: #ffffff;
   
@@ -36,8 +36,8 @@ html[data-theme='dark'] {
   --link-hover-color: #e91e63;
   /* Цвет ссылок при наведении */
 
-  --blue-color: #1f2966;
-  --blue-color-opacity: rgba(59, 73, 223, 0.4);
+  --blue-color: #5065ee;
+  --blue-color-opacity: rgba(66, 81, 241, 0.4);
 
   /* Цвет инпута */
   --input-background-color: #e4deda;

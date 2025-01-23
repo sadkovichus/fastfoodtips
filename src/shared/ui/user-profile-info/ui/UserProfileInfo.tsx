@@ -22,8 +22,8 @@ export const UserProfileInfo = () => {
         reader.readAsDataURL(file);
         reader.onload = async function () {
           await uploadAvatar({ avatar: reader.result as string, id: user.id }).unwrap();
-          if (!('url' in uploadAvatar)) return new Error('Произошла ошибка при загрузке аватара');
           console.log(uploadAvatar);
+          if (!('url' in uploadAvatar)) return new Error('Произошла ошибка при загрузке аватара');
           dispatch(setUser({ ...user, avatarurl: uploadAvatar.url as string }));
         };
         reader.onerror = function () {
@@ -39,12 +39,12 @@ export const UserProfileInfo = () => {
     console.log(user);
   }, [user]);
 
-  if (isLoading || !user) return <p>Загрузка...</p>;
+  if (!user) return <p>Загрузка...</p>;
 
   return (
     <div className={s['text-info']}>
       <label htmlFor='user-photo-input' className={s.photo}>
-        <img src={user.avatarurl ? (user.avatarurl as string) : UserImg} alt='' />
+        {isLoading ? <p>Загрузка...</p> : <img src={user.avatarurl ? (user.avatarurl as string) : UserImg} alt='' />}
         <input onChange={handleFileChange} type='file' id='user-photo-input' />
       </label>
       <div className={s.info}>

@@ -17,7 +17,7 @@
 }
 
 .nav {
-	background-color: #3b364c;
+	background-color: var(--block-background-color);
 	max-width: 200px;
 	width: 100%;
 	display: flex;
@@ -36,7 +36,7 @@
 	padding: 15px;
 	cursor: pointer;
 	width: max-content;
-	background-color: #48425d;
+	background-color: var(--block-background-color-hover);
 
 	@media (min-width: 620px) {
 		display: none;
@@ -79,7 +79,7 @@
 			font-size: 14px;
 
 			&:hover {
-				background-color: #48425d;
+				background-color: var(--block-background-color-hover);
 			}
 		}
 	}

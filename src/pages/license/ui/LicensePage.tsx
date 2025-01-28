@@ -5,6 +5,8 @@ export const LicensePage = () => {
   return (
     <div className={s.license}>
       <div className={s.container}>
+        <h2 className={s.title}>ДАННЫЕ ВЛАДЕЛЬЦА САЙТА</h2>
+        <p className={s.subtitle}>ИНН: 671100856969 Email: fastfood.tips2024@gmail.com Phone: +79671963181</p>
         <h2 className={s.title}>ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ ДЛЯ ПОЛЬЗОВАТЕЛЕЙ САЙТА FASTFOOD-TIPS.RU</h2>
         <h5 className={s.subtitle}>
           Настоящее Лицензионное соглашение (далее – «Соглашение») регулирует отношения между Пользователем и Владельцем сайта fastfood-tips.ru (далее

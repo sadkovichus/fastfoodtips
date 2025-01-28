@@ -40,6 +40,9 @@ export const Navigation = ({ handleActive, active }: Props) => {
         <li>
           <Link to={PathNames.myLink}>Моя ссылка</Link>
         </li>
+        <li>
+          <Link to={PathNames.withdraw}>Вывод средств</Link>
+        </li>
       </ul>
       <button type='button' onClick={handleLogout} className={s.btn}>
         Выйти

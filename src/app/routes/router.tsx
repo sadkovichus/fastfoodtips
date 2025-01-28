@@ -10,6 +10,7 @@ import { MyLink } from '@pages/may-link';
 import { Pay } from '@pages/pay';
 import { PayCode } from '@pages/pay-code';
 import { Settings } from '@pages/settings';
+import { Withdraw } from '@pages/withdraw/ui/Withdraw';
 import { PathNames } from '@shared/config';
 import { ErrorBoundary } from '@shared/ui';
 import { RouteObject } from 'react-router-dom';
@@ -50,8 +51,8 @@ export const router: RouteObject[] = [
           },
           {
             path: PathNames.withdraw,
-            element: <p>Withdraw</p>,
-          }
+            element: <Withdraw />,
+          },
         ],
       },
       {
@@ -83,10 +84,6 @@ export const router: RouteObject[] = [
       {
         path: PathNames.license,
         element: <LicensePage />,
-      },
-      {
-        path: PathNames.authorInfo,
-        element: <p>ИНН: 671100856969 Email: fastfood.tips2024@gmail.com Phone: +79671963181</p>,
       },
       //? 404 page ↓
       {

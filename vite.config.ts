@@ -50,7 +50,7 @@ export default defineConfig({
   ],
   css: {
     modules: {
-      localsConvention: 'camelCase', // Опционально: формат имен классов в JS
+      // localsConvention: 'camelCase', // Опционально: формат имен классов в JS
       generateScopedName: '[hash:base64:8]', // Формат: хэш из 8 символов
     },
     preprocessorOptions: {

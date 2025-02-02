@@ -49,6 +49,10 @@ export default defineConfig({
     }) as unknown as PluginOption,
   ],
   css: {
+    modules: {
+      localsConvention: 'camelCase', // Опционально: формат имен классов в JS
+      generateScopedName: '[hash:base64:8]', // Формат: хэш из 8 символов
+    },
     preprocessorOptions: {
       scss: {
         sassOptions: {

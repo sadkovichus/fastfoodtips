@@ -4,7 +4,7 @@ import s from './AuthForm.module.scss';
 import { AuthFormInputs } from '@features/auth/model/type';
 import { Link } from 'react-router-dom';
 import { emailValidation, passwordValidation } from '@shared/const';
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import { PathNames } from '@shared/config'
 
 interface AuthFormProps {

@@ -11,7 +11,7 @@ export function useGetStorage<T>(data: string): [T, boolean] {
 			const decrData = await decryptData(data);
 			setState(decrData);
 			setIsLoading(false);
-		} catch (err) {
+		} catch {
 			return null;
 		}
 	}

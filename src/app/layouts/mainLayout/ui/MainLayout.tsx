@@ -22,23 +22,23 @@ export const MainLayout = () => {
     return decryptData(localStorage.getItem('user') || 'null');
   }, []);
 
-  // const getUser = async () => {
-  //   try {
-  //     const response = await getUserById({ id: storageUser?.id || '' }).unwrap();
-  //     if ('message' in response) {
-  //       dispatch(logout());
-  //       throw new Error((response as { message: string }).message);
-  //     }
-  //     dispatch(setUser(response));
-  //   } catch (err) {
-  //     return navigate(PathNames.create, { replace: true });
-  //   }
-  // };
+  const getUser = async () => {
+    try {
+      const response = await getUserById({ id: storageUser?.id || '' }).unwrap();
+      if ('message' in response) {
+        dispatch(logout());
+        throw new Error((response as { message: string }).message);
+      }
+      dispatch(setUser(response));
+    } catch {
+      return navigate(PathNames.create, { replace: true });
+    }
+  };
 
-  // useEffect(() => {
-  //   if (!email && !storageUser?.email) return navigate(PathNames.auth, { replace: true });
-  //   getUser();
-  // }, [storageUser, email]);
+  useEffect(() => {
+    if (!email && !storageUser?.email) return navigate(PathNames.auth, { replace: true });
+    getUser();
+  }, [storageUser, email]);
 
   if (isLoading) return <p>Загрузка...</p>;
   if (error) return <p>Произошла ошибка</p>;
